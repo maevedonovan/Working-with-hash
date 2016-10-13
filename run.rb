@@ -9,5 +9,23 @@ end
 
 get '/states' do
   # code!
+  @states = Array.new
+
+  @state = { id: "CO", name: "Colorado"}
+  @states << @state
+
+  @state = { id: "PA", name: "Pennsylvania"}
+  @states << @state
+
+  @state = { id: "WA", name: "Washington"}
+  @states << @state
+
+  @state = { id: "ME", name: "Maine"}
+  @states << @state
+
+  @state = { id: "VT", name: "Vermont"}
+  @states << @state
+  
+  @states.sort_by { |:name| }
   erb :states, layout: :main
 end
