@@ -3,12 +3,21 @@
 <p>here is a list of states...</p>
 
 <!-- iterate through each state in the array and put them into list items individually -->
+<!-- jarp:
+  you have hte right idea but it's a little off and causing the app to crash
 
+-->
 <select>
-  <% if @state[:name] == "Colorado" %>
-    <option selected="true" value="<%= state[:id] %>"><%= state[:name] %></option>
-  <% else %>
+  <!-- this is the correct if statement but in the wrong place -->
+  <%# if @state[:name] == "Colorado" %>
+    <!-- this is the correct select html with the ruby content concatenated as well, but in the wrong place -->
+    <!-- <option selected="true" value="<%# state[:id] %>"><%# state[:name] %></option> -->
+  <%# else %>
+    <!--
+      jarp: the is the correct way to loop through the array. See how I embedded the if statement inside the option tag
+        you were also missing some <%= (the '=' which was supressing the output )
+    -->
     <% @states.each do | state | %>
-      <option value ="<% state[:id] %>"><%= state[:name] %></option>
+      <option value ="<%= state[:id] %>" <% if state[:name] == 'Colorado' %> selected="true" <% end %>> <%= state[:name] %></option>
     <% end %>
 </select>

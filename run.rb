@@ -9,6 +9,7 @@ end
 
 get '/states' do
   # code!
+  # jarp: "The @state variable does not need to be an instance var (doesn't need the @). It is only used in this file, not the view
   @states = Array.new
 
   @state = { id: "CO", name: "Colorado"}
@@ -25,7 +26,8 @@ get '/states' do
 
   @state = { id: "VT", name: "Vermont"}
   @states << @state
-  
-  @states.sort_by { |:name| }
+
+  # this line is causing an error: @states.sort_by { |:name| }
+  @states.sort_by { |s| s[:name] }
   erb :states, layout: :main
 end
